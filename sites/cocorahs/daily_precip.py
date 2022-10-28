@@ -2,7 +2,6 @@ from datetime import date
 from datetime import timedelta
 from typing import Self
 from typing import Sequence
-from typing import TypeVar
 
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement

@@ -1,4 +1,5 @@
 from re import Pattern
+from typing import Self
 
 from selenium.webdriver.support import expected_conditions as Until
 from selenium.webdriver.support.wait import WebDriverWait
@@ -15,7 +16,7 @@ class PageWait(object):
         self.seconds = seconds
         self.ignored = list()
 
-    def disable(self, ignorable: IgnorableExceptions) -> 'PageWait':
+    def disable(self, ignorable: IgnorableExceptions) -> Self:
         self.ignored.append(ignorable.value)
         return self
 

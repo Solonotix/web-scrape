@@ -1,5 +1,5 @@
 from typing import Callable
-from typing import TypeVar
+from typing import Self
 
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import TimeoutException
@@ -11,21 +11,18 @@ from .Locator import Locator
 from .PageWait import PageWait
 
 
-TBasePage = TypeVar('TBasePage', bound='BasePage')
-
-
 class BasePage(object):
     def __init__(self, driver: WebDriver):
         self.driver = driver
         self.keys = Keys
 
-    def __enter__(self) -> TBasePage:
+    def __enter__(self) -> Self:
         return self
 
     def __exit__(self):
         self.driver.quit()
 
-    def click_element(self: TBasePage, locator: Locator) -> TBasePage:
+    def click_element(self, locator: Locator) -> Self:
         """
         Clicks the element as found on the page
         :param locator: Element to be clicked
@@ -65,7 +62,7 @@ class BasePage(object):
         """
         return self.driver.page_source
 
-    def select_option(self, dropdown: Locator, options: Locator, action: Callable[[WebElement], bool]) -> TBasePage:
+    def select_option(self, dropdown: Locator, options: Locator, action: Callable[[WebElement], bool]) -> Self:
         """
         Interaction with dropdown menus, selecting the requested option
         :param dropdown: Reference to the dropdown menu
@@ -84,7 +81,7 @@ class BasePage(object):
 
         return self
 
-    def send_keys(self: TBasePage, locator: Locator, keys: str) -> TBasePage:
+    def send_keys(self, locator: Locator, keys: str) -> Self:
         """
         Type the provided string at the specified element
         :param locator: Target element to type into
