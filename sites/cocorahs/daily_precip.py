@@ -38,6 +38,7 @@ class DailyPrecipReports(NavBar):
 
         for day in days:
             self.filter_by_date(day).search()
+            pages = len(self.find_elements(Locator.css('select#ucReportList_wcDropDownListPager option')))
             table = self.find_element(Locator.css('table#ucReportList_ReportGrid'))
             self.data.extend(Precipitation(table.get_attribute('outerHtml')))
 
@@ -74,7 +75,7 @@ class DailyPrecipReports(NavBar):
         return self
 
     def search(self) -> Self:
-
+        return self.click_element(Locator.css('input#frmPrecipReportSearch_btnSearch'))
 
     def select_country(self: 'DailyPrecipReports', country: str) -> 'DailyPrecipReports':
         return self.select_option(self.country_selection, self.country_selection_options,

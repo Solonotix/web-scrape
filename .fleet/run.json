@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+          "type": "command",
+          "name": "deno",
+          "program": "deno",
+          "args": ["script.ts"],
+          "workingDir": "./",
+        },
+
+    ]
+}
